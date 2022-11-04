@@ -1,4 +1,3 @@
 "use strict";
 
-module.exports = require("firmata-io")(require("./com"));
-
+module.exports = require("./firmata-io.js")(require("./com"));

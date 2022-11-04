@@ -3,7 +3,7 @@
 const Emitter = require("events");
 
 class TransportStub extends Emitter {
-  constructor(path/*, options, openCallback*/) {
+  constructor(path /*, options, openCallback*/) {
     super();
     this.isOpen = true;
     this.baudRate = 0;
@@ -41,7 +41,7 @@ try {
   if (process.env.IS_TEST_MODE) {
     com = TransportStub;
   } else {
-    SerialPort = require("serialport");
+    SerialPort = require("serialport").SerialPort;
     com = SerialPort;
   }
 } catch (err) {
@@ -55,7 +55,9 @@ if (com == null) {
     com = TransportStub;
   } else {
     console.log("It looks like serialport didn't install properly.");
-    console.log("More information can be found here https://serialport.io/docs/guide-installation");
+    console.log(
+      "More information can be found here https://serialport.io/docs/guide-installation"
+    );
     console.log(`The result of requiring the package is: ${SerialPort}`);
     console.log(error);
     throw "Missing serialport dependency";

@@ -9,7 +9,7 @@ Board.requestPort((error, port) => {
   const board = new Board(port.path);
 
   board.on("ready", () => {
-    const pin = 13;
+    const pin = 4;
     let state = 1;
 
     board.pinMode(pin, board.MODES.OUTPUT);

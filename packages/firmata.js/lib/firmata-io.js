@@ -481,10 +481,9 @@ class Firmata extends Emitter {
         baudRate: 57600,
         // https://github.com/node-serialport/node-serialport/blob/5.0.0/UPGRADE_GUIDE.md#open-options
         highWaterMark: 256,
+        path: port,
       },
     };
-
-    console.log(port);
 
     const settings = Object.assign({}, defaults, options);
 
@@ -598,7 +597,8 @@ class Firmata extends Emitter {
       if (!Transport) {
         throw new Error("Missing Default Transport");
       }
-      this.transport = new Transport(port, settings.serialport);
+
+      this.transport = new Transport(settings.serialport);
     }
 
     this.transport.on("close", (event) => {

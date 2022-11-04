@@ -1,8 +1,8 @@
-const SerialPort = require("serialport");
+const { SerialPort } = require("serialport");
 const five = require("johnny-five");
 const Firmata = require("../");
 
-SerialPort.list().then(ports => {
+SerialPort.list().then((ports) => {
   const device = ports.reduce((accum, item) => {
     if (item.manufacturer.indexOf("Arduino") === 0) {
       return item;
@@ -10,14 +10,13 @@ SerialPort.list().then(ports => {
     return accum;
   }, null);
 
-
   /*
     The following demonstrates using Firmata
     as an IO Plugin for Johnny-Five
    */
 
   const board = new five.Board({
-    io: new Firmata(device.path)
+    io: new Firmata(device.path),
   });
 
   board.on("ready", () => {
@@ -25,4 +24,3 @@ SerialPort.list().then(ports => {
     led.blink(500);
   });
 });
-

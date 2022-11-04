@@ -12,7 +12,6 @@ npm install firmata-io --save
 
 Install a Transport:
 
-
 ```sh
 npm install serialport --save
 ```
@@ -30,7 +29,7 @@ Here's an example using the `Serialport` class:
 
 ```js
 // Require your Transport!
-const Serialport = require("serialport");
+const { SerialPort } = require("serialport");
 // Pass the Transport class to the transport binding
 // function exported by firmata-io. The transport binding
 // function will return the Firmata class object with
@@ -58,14 +57,14 @@ Here's an example using a `Serialport` instance:
 
 ```js
 // Require your Transport!
-const Serialport = require("serialport");
+const { SerialPort } = require("serialport");
 // Get the Firmata class without a bound transport.
 const Firmata = require("firmata-io").Firmata;
 
-Serialport.list().then(ports => {
+Serialport.list().then((ports) => {
   // Figure which port to use...
-  const port = ports.find(port => {
-    return port.manufacturer && port.manufacturer.startsWith("Arduino")
+  const port = ports.find((port) => {
+    return port.manufacturer && port.manufacturer.startsWith("Arduino");
   });
 
   // Instantiate an instance of your Transport class
@@ -82,7 +81,6 @@ Serialport.list().then(ports => {
   });
 });
 ```
-
 
 ## License
 
